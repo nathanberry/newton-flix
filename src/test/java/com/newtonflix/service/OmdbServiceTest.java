@@ -1,6 +1,7 @@
 package com.newtonflix.service;
 
 import com.newtonflix.model.Movie;
+import com.newtonflix.model.SearchResults;
 import org.apache.commons.io.IOUtils;
 import org.junit.Before;
 import org.junit.Test;
@@ -38,9 +39,12 @@ public class OmdbServiceTest extends OmdbServiceTestBase {
                 .andExpect(method(HttpMethod.GET))
                 .andRespond(withSuccess(getTestJson(), MediaType.APPLICATION_JSON));
 
-        List<Movie> movies = omdbService.searchMoviesByTitle("newton");
+        SearchResults searchResults = omdbService.searchMoviesByTitle("newton");
         mockServer.verify();
 
+        assertEquals("Incorrect number of total results", "50", searchResults.getTotalResults());
+
+        List<Movie> movies = searchResults.getMovies();
         assertEquals("Incorrect number of movies", 10, movies.size());
 
         // Spot check movies from search

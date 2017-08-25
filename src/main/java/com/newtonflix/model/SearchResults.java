@@ -8,7 +8,7 @@ public class SearchResults {
     @JsonProperty("Search")
     private List<Movie> movies;
 
-    @JsonProperty("TotalResults")
+    @JsonProperty("totalResults")
     private String totalResults;
 
     public List<Movie> getMovies() {

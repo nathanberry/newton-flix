@@ -1,6 +1,7 @@
 package com.newtonflix.service;
 
 import com.newtonflix.model.Movie;
+import com.newtonflix.model.SearchResults;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,10 @@ import static org.junit.Assert.assertNotNull;
 public class OmdbServiceIT extends OmdbServiceTestBase {
     @Test
     public void testSearchMoviesByTitle() throws Exception {
-        List<Movie> movies = omdbService.searchMoviesByTitle("newton");
+        SearchResults searchResults = omdbService.searchMoviesByTitle("newton");
+        assertNotNull("Total results not set", searchResults.getTotalResults());
+
+        List<Movie> movies = searchResults.getMovies();
         assertEquals("Incorrect number of movies", 10, movies.size());
 
         // Spot check movies from search
