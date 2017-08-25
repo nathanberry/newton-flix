@@ -1,0 +1,76 @@
+{
+  "Search": [
+    {
+      "Title": "The Newton Boys",
+      "Year": "1998",
+      "imdbID": "tt0120769",
+      "Type": "movie",
+      "Poster": "https://images-na.ssl-images-amazon.com/images/M/MV5BMWZmZDMwMjUtYjZiMC00ZWI4LWIwMjQtY2E3NzBlYzk1OWYxXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg"
+    },
+    {
+      "Title": "A Huey P. Newton Story",
+      "Year": "2001",
+      "imdbID": "tt0278490",
+      "Type": "movie",
+      "Poster": "https://images-na.ssl-images-amazon.com/images/M/MV5BMTg3OTI1MTI2N15BMl5BanBnXkFtZTcwOTIzNDQyMQ@@._V1_SX300.jpg"
+    },
+    {
+      "Title": "Helmut Newton: Frames from the Edge",
+      "Year": "1989",
+      "imdbID": "tt0097382",
+      "Type": "movie",
+      "Poster": "https://images-na.ssl-images-amazon.com/images/M/MV5BMTI4MjgwMjk3OV5BMl5BanBnXkFtZTcwMjA0NzUxMQ@@._V1_SX300.jpg"
+    },
+    {
+      "Title": "Me & Isaac Newton",
+      "Year": "1999",
+      "imdbID": "tt0218433",
+      "Type": "movie",
+      "Poster": "https://images-na.ssl-images-amazon.com/images/M/MV5BMTc4NDU0MjcxMl5BMl5BanBnXkFtZTcwMzczNzAzMQ@@._V1_SX300.jpg"
+    },
+    {
+      "Title": "Newton",
+      "Year": "2017",
+      "imdbID": "tt6484982",
+      "Type": "movie",
+      "Poster": "https://images-na.ssl-images-amazon.com/images/M/MV5BMDk4Y2Q2MmUtYjE1YS00NjEwLTg0ZGYtOGJkZjUzOTllYzA0L2ltYWdlXkEyXkFqcGdeQXVyNzA0MTg0MzE@._V1_SX300.jpg"
+    },
+    {
+      "Title": "Olivia Newton-John: Let's Get Physical",
+      "Year": "1982",
+      "imdbID": "tt0283520",
+      "Type": "movie",
+      "Poster": "https://images-na.ssl-images-amazon.com/images/M/MV5BMTgwODQxMDYxMF5BMl5BanBnXkFtZTcwMjA1NTYyMQ@@._V1_SX300.jpg"
+    },
+    {
+      "Title": "Isaac Newton: The Last Magician",
+      "Year": "2013",
+      "imdbID": "tt2878302",
+      "Type": "movie",
+      "Poster": "https://images-na.ssl-images-amazon.com/images/M/MV5BNGY3NDc0NWYtYWZiNS00MzA4LWFiZDMtNDk2ZDdjYzFjMDZlXkEyXkFqcGdeQXVyNTQzMjAxMzA@._V1_SX300.jpg"
+    },
+    {
+      "Title": "A Special Olivia Newton-John",
+      "Year": "1976",
+      "imdbID": "tt0262014",
+      "Type": "movie",
+      "Poster": "N/A"
+    },
+    {
+      "Title": "Olivia Newton-John: Twist of Fate",
+      "Year": "1984",
+      "imdbID": "tt0283517",
+      "Type": "movie",
+      "Poster": "N/A"
+    },
+    {
+      "Title": "Olivia Newton-John: Hollywood Nights",
+      "Year": "1980",
+      "imdbID": "tt0330718",
+      "Type": "movie",
+      "Poster": "N/A"
+    }
+  ],
+  "totalResults": "50",
+  "Response": "True"
+}
