@@ -38,7 +38,7 @@ export class AppComponent implements OnInit {
                 if (total > pageSize) {
                     console.log(`There are ${total} total results to retrieve...`);
                     let remaining = total - pageSize;
-                    let pages = Math.ceil(remaining / pageSize);
+                    let pages = Math.ceil(remaining / pageSize) + 1;
                     let observables = [];
 
                     for (let page = 2; pages >= page; page++) {
