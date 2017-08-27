@@ -5,6 +5,7 @@ import {Observable} from "rxjs/Observable";
 import "rxjs/add/observable/forkJoin";
 import "rxjs/add/operator/catch";
 import "rxjs/add/observable/of";
+import {Movie} from "./movie";
 
 @Component({
     selector: 'app-root',
@@ -35,8 +36,8 @@ export class AppComponent implements OnInit {
                 let total = parseInt(this.searchResults.totalResults);
                 let pageSize = this.searchResults.Search.length;
 
+                // If the total is larger than the number of results.  Retrieve additional pages.
                 if (total > pageSize) {
-                    console.log(`There are ${total} total results to retrieve...`);
                     let remaining = total - pageSize;
                     let pages = Math.ceil(remaining / pageSize) + 1;
                     let observables = [];
@@ -49,27 +50,32 @@ export class AppComponent implements OnInit {
                         });
                     }
 
+                    // Once additional pages are retrieved, sort by Title
                     Observable.forkJoin(...observables).subscribe(() => {
-                        this.searchResults.Search.sort((a, b) => {
-                            if (a.Title > b.Title) {
-                                return 1;
-                            } else if (a.Title < b.Title) {
-                                return -1;
-                            } else {
-                                return 0;
-                            }
-                        });
-                        this.searching = false;
-                        this.resultsComplete = true;
+                        this.searchResults.Search.sort(this.sortByTitle);
+                        this.resetForNextSearch();
                     });
                 } else {
-                    this.searching = false;
-                    this.resultsComplete = true;
+                    this.resetForNextSearch();
                 }
             }, (err) => {
-                this.searching = false;
-                this.resultsComplete = true;
+                this.resetForNextSearch();
                 this.error = "Unable to retrieve movies.  Please check client and server logs for assistance.";
             });
+    }
+
+    resetForNextSearch(): void {
+        this.searching = false;
+        this.resultsComplete = true;
+    }
+
+    sortByTitle(a: Movie, b: Movie): number {
+        if (a.Title > b.Title) {
+            return 1;
+        } else if (a.Title < b.Title) {
+            return -1;
+        } else {
+            return 0;
+        }
     }
 }
