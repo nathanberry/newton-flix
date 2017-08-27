@@ -6,4 +6,4 @@
 Everyone loves movies, but I wonder how many movies about Newton exist?
 
 ### TL;DR;
-[Angular 4](https://angular.io/) frontend using [Bootstrap 4](https://getbootstrap.com/) over a Spring Boot backend.  [CircleCI](https://circleci.com/gh/nathanberry/newton-flix) used for continuous integration, and automatically deployed to [Heroku](http://newton-flix.herokuapp.com/) on success.
+[Angular 4](https://angular.io/) frontend using [Bootstrap 4](https://getbootstrap.com/) over a [Spring Boot](https://projects.spring.io/spring-boot/) backend.  [CircleCI](https://circleci.com/gh/nathanberry/newton-flix) used for continuous integration, and automatically deployed to [Heroku](http://newton-flix.herokuapp.com/) on success.
