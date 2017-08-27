@@ -1,6 +1,6 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:center;padding: 15px">
-    <img src="assets/newtonflix-logo.png">
+    <img src="../assets/newtonflix-logo.png">
 </div>
 
 <table *ngIf="searchResults" class="table">
@@ -13,15 +13,15 @@
     </thead>
     <tbody>
         <tr *ngFor="let movie of searchResults.Search">
-            <td *ngIf="movie.Poster !== 'N/A'"><img height="100" src="{{movie.Poster}}"></td>
-            <td *ngIf="movie.Poster === 'N/A'">&nbsp;</td>
-            <td>
+            <td *ngIf="movie.Poster !== 'N/A'" class="movie-poster"><img height="100" src="{{movie.Poster}}"></td>
+            <td *ngIf="movie.Poster === 'N/A'" class="movie-poster">&nbsp;</td>
+            <td class="movie-title">
                 {{movie.Title}}
                 <a href="http://www.imdb.com/title/{{movie.imdbID}}">
-                    <img src="assets/imdb-logo.png" width="32">
+                    <img src="../assets/imdb-logo.png" width="32">
                 </a>
             </td>
-            <td>{{movie.Year}}</td>
+            <td class="movie-year">{{movie.Year}}</td>
         </tr>
     </tbody>
 </table>
