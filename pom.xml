@@ -72,7 +72,7 @@
             <plugin>
                 <groupId>com.github.eirslett</groupId>
                 <artifactId>frontend-maven-plugin</artifactId>
-                <version>1.0</version>
+                <version>1.4</version>
                 <executions>
                     <execution>
                         <id>install node and npm</id>
@@ -101,7 +101,18 @@
                             <goal>npm</goal>
                         </goals>
                         <configuration>
-                            <arguments>run ci</arguments>
+                            <arguments>run build</arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>npm run test-with-coverage</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+                        <configuration>
+                            <arguments>run test-with-coverage</arguments>
+                            <skip>${skipTests}</skip>
                         </configuration>
                     </execution>
                 </executions>

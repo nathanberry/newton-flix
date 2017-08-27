@@ -9,7 +9,7 @@
     "test": "ng test --sourcemap=false",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "ci": "ng build; ng test --code-coverage --single-run"
+    "test-with-coverage": "ng test --code-coverage --single-run"
   },
   "private": true,
   "dependencies": {
