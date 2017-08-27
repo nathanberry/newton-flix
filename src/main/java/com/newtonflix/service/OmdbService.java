@@ -4,7 +4,8 @@ import com.newtonflix.model.SearchResults;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 @Service
 public class OmdbService {
@@ -12,10 +13,12 @@ public class OmdbService {
     static final String API_KEY = "edeb260";
     private RestTemplate restTemplate;
 
-    public SearchResults searchMoviesByTitle(String title) {
-        SearchResults searchResults = getRestTemplate().getForObject(buildUrl("type=movie&s={search}"),
-                SearchResults.class, Collections.singletonMap("search", title));
-        return searchResults;
+    public SearchResults searchMoviesByTitle(String title, Integer page) {
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("search", title);
+        paramMap.put("page", page);
+        return getRestTemplate().getForObject(buildUrl("type=movie&s={search}&page={page}"),
+                SearchResults.class, paramMap);
     }
 
     private String buildUrl(String uri) {

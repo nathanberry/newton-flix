@@ -17,12 +17,13 @@ public class MoviesController {
     OmdbService omdbService;
 
     @RequestMapping("/")
-    public ResponseEntity<SearchResults> search(@RequestParam(value = "search", required = false) String search) {
+    public ResponseEntity<SearchResults> search(@RequestParam(value = "search", required = false) String search,
+                                                @RequestParam(value = "page", defaultValue = "1") Integer page) {
         if (StringUtils.isEmpty(search)) {
             search = "newton";
         }
 
-        SearchResults searchResults = omdbService.searchMoviesByTitle(search);
+        SearchResults searchResults = omdbService.searchMoviesByTitle(search, page);
         return new ResponseEntity<>(searchResults, HttpStatus.OK);
     }
 }

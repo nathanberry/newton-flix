@@ -1,7 +1,6 @@
 import {async, ComponentFixture, ComponentFixtureAutoDetect, TestBed} from '@angular/core/testing';
 
 import {AppComponent} from './app.component';
-import {DebugElement} from "@angular/core";
 import {MovieService} from "./movies.service";
 import {By} from "@angular/platform-browser";
 import {Observable} from "rxjs/Observable";
@@ -10,14 +9,12 @@ import "rxjs/add/observable/of";
 describe('AppComponent', () => {
     let comp: AppComponent;
     let fixture: ComponentFixture<AppComponent>;
-    let de: DebugElement;
-    let el: HTMLElement;
     let movieService: MovieService;
 
     beforeEach(async(() => {
         let movieServiceStub = {
-            searchMovies: (search) => {
-                console.log("MovieService returning mock data for " + search);
+            searchMovies: (search, page) => {
+                console.log("MovieService returning mock data for search=" + search + " and page=" + page);
                 return Observable.of({
                     "Search": [
                         {"imdbID": "1", "Title": "Newton 1", "Year": "2015", "Poster": "NewtonPoster1"},
@@ -48,11 +45,18 @@ describe('AppComponent', () => {
 
     it('should create the app', async(() => {
         expect(comp).toBeTruthy();
-        expect(comp.searchResults).toBeTruthy();
+        expect(comp.searchResults).toBeFalsy();
+    }));
+
+    it("should display movies on search", function () {
+        expect(comp).toBeTruthy();
+
+        comp.searchMovies();
+        fixture.detectChanges();
 
         // query for the title <h1> by CSS element selector
-        de = fixture.debugElement.query(By.css('table'));
-        el = de.nativeElement;
+        let de = fixture.debugElement.query(By.css('table'));
+        let el = de.nativeElement;
         let tBody: HTMLElement;
         let rows: NodeListOf<HTMLElement>;
         tBody = el.getElementsByTagName("tbody")[0];
@@ -62,7 +66,7 @@ describe('AppComponent', () => {
         assertMovie(rows, 0, "Newton 1", "2015", "NewtonPoster1");
         assertMovie(rows, 1, "Newton 2", "2016", "NewtonPoster2");
         assertMovie(rows, 2, "Newton 3", "2017", null);
-    }));
+    });
 
     let assertMovie = function (rows: NodeListOf<HTMLElement>, index: number, expectedTitle: string,
                                 expectedYear: string, expectedPoster: string) {

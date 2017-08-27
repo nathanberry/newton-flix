@@ -34,12 +34,12 @@ public class OmdbServiceTest extends OmdbServiceTestBase {
 
     @Test
     public void testSearchMoviesByTitle() throws Exception {
-        String url = String.format("%s/?apikey=%s&type=movie&s=newton", OmdbService.OMDB_API_URL, OmdbService.API_KEY);
+        String url = String.format("%s/?apikey=%s&type=movie&s=newton&page=1", OmdbService.OMDB_API_URL, OmdbService.API_KEY);
         mockServer.expect(requestTo(url))
                 .andExpect(method(HttpMethod.GET))
                 .andRespond(withSuccess(getTestJson(), MediaType.APPLICATION_JSON));
 
-        SearchResults searchResults = omdbService.searchMoviesByTitle("newton");
+        SearchResults searchResults = omdbService.searchMoviesByTitle("newton", 1);
         mockServer.verify();
 
         assertEquals("Incorrect number of total results", "50", searchResults.getTotalResults());

@@ -1,27 +1,39 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center;padding: 15px">
-    <img src="../assets/newtonflix-logo.png">
+<div style="text-align:center">
+    <div style="padding: 15px"><img src="../assets/newtonflix-logo.png"></div>
+    <div class="search-box">
+        Have you ever wondered how many movies contain the word <img height="12" src="../assets/newton-logo.png"> in the
+        title?
+    </div>
+    <div>
+        If so, click the button below to check them out!
+    </div>
+    <div style="padding: 10px">
+        <button (click)="searchMovies()" type="button" class="btn btn-primary show-movies-button" [attr.disabled]="searching ? '' : null">Show Me the Movies!</button>
+    </div>
 </div>
 
-<table *ngIf="searchResults" class="table">
+<table *ngIf="resultsComplete && searchResults" class="table">
     <thead>
-        <tr>
-            <th>&nbsp;</th>
-            <th>Title</th>
-            <th>Year</th>
-        </tr>
+    <tr>
+        <th>&nbsp;</th>
+        <th>Title</th>
+        <th>Year</th>
+    </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let movie of searchResults.Search">
-            <td *ngIf="movie.Poster !== 'N/A'" class="movie-poster"><img height="100" src="{{movie.Poster}}"></td>
-            <td *ngIf="movie.Poster === 'N/A'" class="movie-poster">&nbsp;</td>
-            <td class="movie-title">
-                {{movie.Title}}
-                <a href="http://www.imdb.com/title/{{movie.imdbID}}">
-                    <img src="../assets/imdb-logo.png" width="32">
-                </a>
-            </td>
-            <td class="movie-year">{{movie.Year}}</td>
-        </tr>
+    <tr *ngFor="let movie of searchResults.Search">
+        <td *ngIf="movie.Poster !== 'N/A'" class="movie-poster"><img height="100" src="{{movie.Poster}}"></td>
+        <td *ngIf="movie.Poster === 'N/A'" class="movie-poster">&nbsp;</td>
+        <td class="movie-title">
+            {{movie.Title}}
+            <a href="http://www.imdb.com/title/{{movie.imdbID}}">
+                <img src="../assets/imdb-logo.png" width="32">
+            </a>
+        </td>
+        <td class="movie-year">{{movie.Year}}</td>
+    </tr>
     </tbody>
 </table>
+<div *ngIf="error" class="alert alert-danger" role="alert">{{error}}</div>
+<div *ngIf="searchResults && searchResults.Search && searchResults.Search.length == 0" style="text-align:center">No Movies Found!</div>

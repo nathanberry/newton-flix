@@ -20,6 +20,7 @@ import java.util.List;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Matchers.anyInt;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -43,7 +44,7 @@ public class MoviesControllerTest {
     public void setUp() throws Exception {
         initMockSearchResults();
 
-        when(mockOmdbService.searchMoviesByTitle(anyString())).thenAnswer(invocationOnMock -> {
+        when(mockOmdbService.searchMoviesByTitle(anyString(), anyInt())).thenAnswer(invocationOnMock -> {
             // Ensure a null search string defaults value to newton
             assertEquals("Search string was not newton!", "newton",
                     invocationOnMock.getArgumentAt(0, String.class));
