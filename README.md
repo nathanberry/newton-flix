@@ -193,6 +193,8 @@ The following file was added to enable the proxy between client dev server and t
   }
 }
 ```
+**_Note:_** This file would need to be changed if you chose a different port when running your server.
+
 This process is setup to watch for changes, so as you save changes in the client code you see them immediately in your browser and get a quick turnaround as you are developing.
 
 #### Application Code
