@@ -23,7 +23,7 @@ java -Dserver.port=9090 -jar target/newton-flix-1.0.0.war
 
 **_Note:_** The `-Dserver.port=9090` can be omitted, at which time the default port will be `8080`
 
-Once running, open your browser to [http://localhost:9090]().
+Once running, open your browser to [http://localhost:9090](http://localhost:9090).
 
 ## Project Details
 
