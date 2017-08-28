@@ -64,6 +64,9 @@ curl http://localhost:9090/api/movies/?search=Newton&page=1
 ```
 **_Note:_** Both parameters `search` and `page` are optional, above are the defaults.
 
+#### Testing
+There are unit and integration tests around the `OmdbService` (the class used to communicate to the OMDB API), as well as unit tests around the `MoviesController` class representing the REST API used by the client.
+
 #### Maven Plugins
 ##### Frontend Plugin
 
