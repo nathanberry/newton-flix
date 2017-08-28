@@ -216,5 +216,8 @@ The coverage report can be viewed by opening the `coverage/index.html` file that
 The Angular CLI also provides some test infrastructure to execute end-to-end (e2e) tests that are built using a library called [Protractor](http://www.protractortest.org/), which uses [Selenium WebDriver](http://www.seleniumhq.org/projects/webdriver/) as a way to drive UI based tests against a fully deployed application.
 I wanted to explore the e2e capability, but didn't have time to do so.
 
+#### Bootstrap 4
+To provide some syling and layout support, I decided to use Bootstrap.  I looked at several other libraries as potential providers of UI libraries (i.e. [Angular Material](https://material.angular.io/), [Semantic UI](https://ng-semantic.herokuapp.com/), [Vaadin](https://vaadin.com/elements), and others), but settled on Bootstrap for ease, simplicity, and completeness.
+
 ### Continuous Integration
 I had been wanting to play aournd with CircleCI, so I decided from early on that I would setup my CI with it.  The builds currently run when changes are submitted to `master`, and execute the full build including client and server tests.  It also reports the status of the build back to GitHub, which you can see by the green check or red x in the [commit list](https://github.com/nathanberry/newton-flix/commits/master).
