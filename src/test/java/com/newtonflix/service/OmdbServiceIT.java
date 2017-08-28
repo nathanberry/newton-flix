@@ -26,4 +26,13 @@ public class OmdbServiceIT extends OmdbServiceTestBase {
         assertMovie("tt0218433", "Me & Isaac Newton", "1999", movies);
         assertMovie("tt6484982", "Newton", "2017", movies);
     }
+
+    @Test
+    public void testSearchMoviesByTitleAndReturnAll() throws Exception {
+        SearchResults searchResults = omdbService.searchMoviesByTitleAndReturnAll("newton");
+        assertNotNull("Total results not set", searchResults.getTotalResults());
+
+        List<Movie> movies = searchResults.getMovies();
+        assertEquals("Incorrect number of movies!", 44, movies.size());
+    }
 }

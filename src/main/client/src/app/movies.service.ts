@@ -13,8 +13,8 @@ export class MovieService {
     constructor(private http: Http) {
     }
 
-    searchMovies(search: string, page = 1): Observable<SearchResults> {
-        const url = `${this.moviesApiUrl}?search=${search}&page=${page}`;
+    searchMovies(search: string): Observable<SearchResults> {
+        const url = `${this.moviesApiUrl}?search=${search}&all=true`;
         return this.http.get(url).map(res => res.json());
     }
 }
