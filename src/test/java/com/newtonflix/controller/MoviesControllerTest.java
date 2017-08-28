@@ -39,6 +39,7 @@ public class MoviesControllerTest {
     OmdbService mockOmdbService;
 
     private SearchResults mockSearchResults;
+    private SearchResults mockSearchResultsAll;
 
     @Before
     public void setUp() throws Exception {
@@ -50,26 +51,39 @@ public class MoviesControllerTest {
                     invocationOnMock.getArgumentAt(0, String.class));
             return mockSearchResults;
         });
+
+        when(mockOmdbService.searchMoviesByTitleAndReturnAll(anyString())).thenAnswer(invocationOnMock -> {
+            // Ensure a null search string defaults value to newton
+            assertEquals("Search string was not newton!", "newton",
+                    invocationOnMock.getArgumentAt(0, String.class));
+            return mockSearchResultsAll;
+        });
     }
 
     @Test
     public void testSearch_NewtonAsParam() throws Exception {
         ResultActions results = mockMvc.perform(get("/api/movies/?search=newton"));
-        assertResponse(results);
+        assertResponse(results, 3);
     }
 
     @Test
     public void testSearch_NoSearchParam() throws Exception {
         ResultActions results = mockMvc.perform(get("/api/movies/"));
-        assertResponse(results);
+        assertResponse(results, 3);
     }
 
-    private void assertResponse(ResultActions results) throws Exception {
+    @Test
+    public void testSearch_All() throws Exception {
+        ResultActions results = mockMvc.perform(get("/api/movies/?search=newton&all=true"));
+        assertResponse(results, 5);
+    }
+
+    private void assertResponse(ResultActions results, int count) throws Exception {
         results.andExpect(content().contentType(contentType)).
                 andExpect(status().isOk()).
-                andExpect(jsonPath("$.totalResults", is("3")));
+                andExpect(jsonPath("$.totalResults", is(Integer.toString(count))));
 
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < count; i++) {
             assertMovie(i, results);
         }
     }
@@ -87,6 +101,10 @@ public class MoviesControllerTest {
         mockSearchResults = new SearchResults();
         mockSearchResults.setTotalResults("3");
         mockSearchResults.setMovies(buildMovies(3));
+
+        mockSearchResultsAll = new SearchResults();
+        mockSearchResultsAll.setTotalResults("5");
+        mockSearchResultsAll.setMovies(buildMovies(5));
     }
 
     private List<Movie> buildMovies(int count) {

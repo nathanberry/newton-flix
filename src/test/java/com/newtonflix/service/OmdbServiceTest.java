@@ -37,12 +37,12 @@ public class OmdbServiceTest extends OmdbServiceTestBase {
         String url = String.format("%s/?apikey=%s&type=movie&s=newton&page=1", OmdbService.OMDB_API_URL, OmdbService.API_KEY);
         mockServer.expect(requestTo(url))
                 .andExpect(method(HttpMethod.GET))
-                .andRespond(withSuccess(getTestJson(), MediaType.APPLICATION_JSON));
+                .andRespond(withSuccess(getTestJson("search-newton.json"), MediaType.APPLICATION_JSON));
 
         SearchResults searchResults = omdbService.searchMoviesByTitle("newton", 1);
         mockServer.verify();
 
-        assertEquals("Incorrect number of total results", "50", searchResults.getTotalResults());
+        assertEquals("Incorrect number of total results", "15", searchResults.getTotalResults());
 
         List<Movie> movies = searchResults.getMovies();
         assertEquals("Incorrect number of movies", 10, movies.size());
@@ -53,8 +53,29 @@ public class OmdbServiceTest extends OmdbServiceTestBase {
         assertMovie("tt6484982", "Newton", "2017", movies);
     }
 
-    private String getTestJson() throws IOException {
-        try (InputStream resourceAsStream = getClass().getResourceAsStream("/search-newton.json")) {
+    @Test
+    public void testSearchMoviesByTitleAndReturnAll() throws Exception {
+        String url = String.format("%s/?apikey=%s&type=movie&s=newton&page=1", OmdbService.OMDB_API_URL, OmdbService.API_KEY);
+        mockServer.expect(requestTo(url))
+                .andExpect(method(HttpMethod.GET))
+                .andRespond(withSuccess(getTestJson("search-newton.json"), MediaType.APPLICATION_JSON));
+
+        url = String.format("%s/?apikey=%s&type=movie&s=newton&page=2", OmdbService.OMDB_API_URL, OmdbService.API_KEY);
+        mockServer.expect(requestTo(url))
+                .andExpect(method(HttpMethod.GET))
+                .andRespond(withSuccess(getTestJson("search-newton-2.json"), MediaType.APPLICATION_JSON));
+
+        SearchResults searchResults = omdbService.searchMoviesByTitleAndReturnAll("newton");
+        mockServer.verify();
+
+        assertEquals("Incorrect number of total results", "15", searchResults.getTotalResults());
+
+        List<Movie> movies = searchResults.getMovies();
+        assertEquals("Incorrect number of movies", 15, movies.size());
+    }
+
+    private String getTestJson(final String jsonFile) throws IOException {
+        try (InputStream resourceAsStream = getClass().getResourceAsStream("/" + jsonFile)) {
             return IOUtils.toString(resourceAsStream, "UTF-8");
         }
     }

@@ -18,12 +18,20 @@ public class MoviesController {
 
     @RequestMapping("/")
     public ResponseEntity<SearchResults> search(@RequestParam(value = "search", required = false) String search,
-                                                @RequestParam(value = "page", defaultValue = "1") Integer page) {
+                                                @RequestParam(value = "page", defaultValue = "1") Integer page,
+                                                @RequestParam(value = "all", required = false) boolean all) {
         if (StringUtils.isEmpty(search)) {
             search = "newton";
         }
 
-        SearchResults searchResults = omdbService.searchMoviesByTitle(search, page);
+        SearchResults searchResults;
+
+        if (all) {
+            searchResults = omdbService.searchMoviesByTitleAndReturnAll(search);
+        } else {
+            searchResults = omdbService.searchMoviesByTitle(search, page);
+        }
+
         return new ResponseEntity<>(searchResults, HttpStatus.OK);
     }
 }

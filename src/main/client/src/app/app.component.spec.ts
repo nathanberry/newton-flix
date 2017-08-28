@@ -13,8 +13,8 @@ describe('AppComponent', () => {
 
     beforeEach(async(() => {
         let movieServiceStub = {
-            searchMovies: (search, page) => {
-                console.log("MovieService returning mock data for search=" + search + " and page=" + page);
+            searchMovies: (search) => {
+                console.log("MovieService returning mock data for search=" + search);
                 return Observable.of({
                     "Search": [
                         {"imdbID": "1", "Title": "Newton 1", "Year": "2015", "Poster": "NewtonPoster1"},
