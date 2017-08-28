@@ -70,7 +70,7 @@ There are unit and integration tests around the `OmdbService` (the class used to
 #### Maven Plugins
 ##### Frontend Plugin
 
-Allows us to run node based process to build, test, and package our client application.
+Allows us to run node based processes to build, test, and package our client application.
 
 The plugin is configured to use a particular version of node and npm, and manages the process of dynamically installing the components if they are not already present in the build environment.
 
