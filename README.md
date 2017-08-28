@@ -169,7 +169,7 @@ The [Jacoco](http://www.eclemma.org/jacoco/) plugin is used to report on code co
 The code coverage report can be viewed after a build by opening the following file `target/site/jacoco/index.html`.
 
 ### Frontend
-The frontend is built on the Angular 4 based angular-cli approach to defining the base structure and build of the client application.  This process is built on top of node and comes with a set of predefined scripts to assist with the build, test, and packaging.
+The frontend is built with Angular 4 and uses the angular-cli based approach to defining the base structure and build of the client application.  This process is built on top of node and comes with a set of predefined scripts to assist with the build, test, and packaging.
 
 Scripts defined in the `package.json` file are used by the Maven frontend plugin mentioned above to build and test.
 
