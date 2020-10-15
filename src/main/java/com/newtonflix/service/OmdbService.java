@@ -12,7 +12,7 @@ import java.util.Map;
 @Service
 public class OmdbService {
     static final String OMDB_API_URL = "http://www.omdbapi.com";
-    static final String API_KEY = "edeb260";
+    static final String API_KEY = "e0522e17";
     private RestTemplate restTemplate;
 
     public SearchResults searchMoviesByTitleAndReturnAll(String title) {
